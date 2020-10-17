@@ -1,0 +1,68 @@
+version: '2'
+services:
+  mysql:
+    restart: always
+    build: ./data/mysql/
+    volumes:
+      - "./data/mysql/db:/var/lib/mysql"
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: my_app
+      MYSQL_PASSWORD: secret
+      MYSQL_DATABASE: my_app
+      TZ: "Asia/Tokyo"
+    ports:
+      - "13307:3306"
+  nginx:
+    restart: always
+    image: "nginx:mainline-alpine"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "./data/nginx/conf:/etc/nginx/"
+      - "./data/htdocs:/var/www/html"
+    environment:
+      TZ: "Asia/Tokyo"
+    depends_on:
+      - phpfpm
+  phpfpm:
+    build: ./data/phpfpm/
+    environment:
+      TZ: "Asia/Tokyo"
+    volumes:
+      - "./data/htdocs:/var/www/html"
+      - ./data/phpfpm/php.ini:/usr/local/etc/php/php.ini
+    depends_on:
+      - mysql
+  host:
+    build: ./data/htdocs
+    environment:
+      TZ: "Asia/Tokyo"
+      PRJ: "weather_app"
+    volumes:
+      - "./data/htdocs:/root"
+    ports:
+      - "18765:80"
+    depends_on:
+      - mysql
+      - phpfpm
+  phpmyadmin:
+    # Image Name
+    image: phpmyadmin/phpmyadmin
+    # Container Name
+    container_name: weather_app_phpmyadmin
+    # Environment
+    environment:
+      PMA_ARBITRARY: 1
+      PMA_HOSTS: weather_app_mysql_1
+      PMA_USER: root
+      PMA_PASSWORD: password
+    # Port forwarding(host:container)
+    ports:
+      - 18080:80
+    # Container dependencies
+    depends_on:
+      - mysql
+      - phpfpm
+      - nginx

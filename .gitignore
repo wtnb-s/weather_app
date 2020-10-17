@@ -1,0 +1,5 @@
+.DS_Store
+.vscode
+.bash_history
+data/htdocs/.cache/
+data/htdocs/.*/
