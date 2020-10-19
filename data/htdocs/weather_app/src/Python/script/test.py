@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 file = "osaka.csv"
-path = "../data/temp/%s" %(file)
+path = "/root/weather_app/src/Python/data/temp/%s" %(file)
 data =  pd.read_csv(path, header=None, encoding='cp932')
 
 time = list(data.iloc[:,0])
@@ -33,4 +33,7 @@ plt.plot(listTime, tempAve, color="blue", linewidth=1, linestyle="-")
 plt.grid()
 
 # グラフをファイルに保存する
-fig.savefig("../image/osaka.png")
+imagePath = '/root/weather_app/webroot/img/tmp/tmp.png'
+fig.savefig(imagePath)
+imagePath = 'tmp/tmp.png'
+print(imagePath)

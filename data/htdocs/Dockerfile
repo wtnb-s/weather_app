@@ -6,7 +6,7 @@ RUN apt dist-upgrade -y
 RUN apt autoremove -y
 RUN apt autoclean -y
 RUN apt install wget
-RUN apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev libbz2-dev cmake
+RUN apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev libbz2-dev cmake liblzma-dev
 RUN cd /usr/local/src/
 RUN wget https://www.python.org/ftp/python/3.8.0/Python-3.8.0.tgz
 RUN apt install -y wget
