@@ -4,8 +4,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 file = sys.argv[1] + ".csv"
+month = int(sys.argv[2])
+
 data =  pd.read_csv(const.DATA_TEMP_PATH + file, header=None, encoding='cp932').values.tolist()
-values = [x[0:3] for x in data if x[1] == 10]
+values = [x[0:3] for x in data if x[1] == month]
 value = {}
 # 気温データ取得
 value['temp'] = [x[2] for x in values]

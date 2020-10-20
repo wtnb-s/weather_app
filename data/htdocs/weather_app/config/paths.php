@@ -18,4 +18,5 @@ define('CORE_PATH', CAKE_CORE_INCLUDE_PATH . DS);
 define('CAKE', CORE_PATH . 'src' . DS);
 define('PYTHON', APP . 'Python' . DS);
 define('PYTHON_DATA', PYTHON . 'data' . DS);
+define('PYTHON_DATA_TEMP', PYTHON_DATA . 'temp' . DS);
 define('PYTHON_SCRIPT', PYTHON . 'script' . DS);

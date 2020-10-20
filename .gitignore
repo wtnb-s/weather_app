@@ -3,4 +3,5 @@
 .vscode
 .bash_history
 data/htdocs/.*
+data/htdocs/weather_app/webroot/img/tmp/*
 data/htdocs/weather_app/src/Python/script/__pycache__
