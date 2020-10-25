@@ -18,7 +18,8 @@ class PrefectureController extends AppController {
         // 選択場所の気温情報取得
         $place = $this->request->query('place');
         $month = $this->request->query('month');
-        exec("python3.8 " . PYTHON_SCRIPT . "displayMonthData.py {$place} {$month}", $output);
+        $runningMeanPeriod = !empty($this->request->query('runningMeanPeriod')) ? $this->request->query('runningMeanPeriod') : 0;
+        exec("python3.8 " . PYTHON_SCRIPT . "displayMonthData.py {$place} {$month} {$runningMeanPeriod}", $output);
         $data=[];
         if(!empty($output)) {
             $data['image'] = $output[0];

@@ -3,22 +3,28 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-file = sys.argv[1] + ".csv"
-month = int(sys.argv[2])
+# コマンドライン引数取得
+args= sys.argv
+file = args[1] + ".csv"
+month = int(args[2])
+runningMeanPeriod = int(args[3])
 
-data =  pd.read_csv(const.DATA_TEMP_PATH + file, header=None, encoding='cp932').values.tolist()
-values = [x[0:3] for x in data if x[1] == month]
-value = {}
-# 気温データ取得
-value['temp'] = [x[2] for x in values]
-# 年データ取得
-value['time'] = [x[0] for x in values]
+# 値取得
+data =  pd.read_csv(const.DATA_TEMP_PATH + file, header=0, encoding='cp932')
+values = data[data['mon'] == month]
 
+# 移動平均取得
+if(runningMeanPeriod != 0):
+    runningMean = values['value'].rolling(window = runningMeanPeriod, center = True).mean()
+
+# 作図
 fig = plt.figure()
-plt.plot(value['time'], value['temp'], color="blue", linewidth=1, linestyle="-")
+plt.plot(values['year'], values['value'], color="blue", linewidth=1, linestyle="-")
+if(runningMeanPeriod != 0):
+    plt.plot(values['year'], runningMean, color="red", linewidth=1.5, linestyle="-")
 plt.grid()
-
 imagePath = const.IMG_PATH + const.TMP_IMG
 fig.savefig(imagePath)
+
 # cakephp側への出力用
 print(const.TMP_IMG)

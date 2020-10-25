@@ -1,39 +1,22 @@
-import os
+import os, sys, const
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-file = "osaka.csv"
-path = "/root/weather_app/src/Python/data/temp/%s" %(file)
-data =  pd.read_csv(path, header=None, encoding='cp932')
+file = sys.argv[1] + ".csv"
+month = int(sys.argv[2])
 
-time = list(data.iloc[:,0])
-value = list(data.iloc[:,2])
+data =  pd.read_csv(const.DATA_TEMP_PATH + file, header=0, encoding='cp932')
+values = data[data['mon'] == month]
 
-tempSum = np.array([0] * 36)
-time = np.array([0] * 36)
+runningMean = values['value'].rolling(window = 5, center = True).mean()
 
-count = 0
-for val in value:
-  tempSum[count] += val
-  time[count] += 1 
-  if count == 35:
-    count = 0
-  else:
-    count = count + 1
-
-tempAve = tempSum / time
-listTime = list(range(1, 37))
-
-# 画像のプロット先の準備
 fig = plt.figure()
-plt.plot(listTime, tempAve, color="blue", linewidth=1, linestyle="-")
-
-# グリッドを表示する
+plt.plot(values['year'], values['value'], color="blue", linewidth=1, linestyle="-")
+plt.plot(values['year'], runningMean, color="red", linewidth=1, linestyle="-")
 plt.grid()
 
-# グラフをファイルに保存する
-imagePath = '/root/weather_app/webroot/img/tmp/tmp.png'
+imagePath = const.IMG_PATH + const.TMP_IMG
 fig.savefig(imagePath)
-imagePath = 'tmp/tmp.png'
-print(imagePath)
+# # cakephp側への出力用
+print(const.TMP_IMG)
