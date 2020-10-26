@@ -1,3 +1,4 @@
+from scipy import interpolate
 import os, sys, const
 import pandas as pd
 import numpy as np
@@ -15,13 +16,15 @@ values = data[data['mon'] == month]
 
 # 移動平均取得
 if(runningMeanPeriod != 0):
-    runningMean = values['value'].rolling(window = runningMeanPeriod, center = True).mean()
+    # 欠測値がある場合、線形補完する
+    noMissingValue = values['value'].interpolate(kind='liner')
+    runningMeanValue = noMissingValue.rolling(window = runningMeanPeriod, center = True).mean()
 
 # 作図
 fig = plt.figure()
 plt.plot(values['year'], values['value'], color="blue", linewidth=1, linestyle="-")
 if(runningMeanPeriod != 0):
-    plt.plot(values['year'], runningMean, color="red", linewidth=1.5, linestyle="-")
+    plt.plot(values['year'], runningMeanValue, color="red", linewidth=1.5, linestyle="-")
 plt.grid()
 imagePath = const.IMG_PATH + const.TMP_IMG
 fig.savefig(imagePath)
