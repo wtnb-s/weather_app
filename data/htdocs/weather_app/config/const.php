@@ -1,5 +1,8 @@
-// city
-define('kanazawa', '金沢');
-define('naha', '那覇');
-define('osaka', '大阪');
-define('sapporo', '札幌');
+<?php
+use Cake\Core\Configure;
+
+return [
+    Configure::write([
+        'cityKana' => ['kanazawa'=>'金沢', 'naha'=>'那覇', 'osaka'=>'大阪', 'sapporo'=>'札幌']
+    ])
+];

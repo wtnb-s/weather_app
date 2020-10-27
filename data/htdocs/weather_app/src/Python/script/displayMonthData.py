@@ -26,6 +26,7 @@ plt.plot(values['year'], values['value'], color="blue", linewidth=1, linestyle="
 if(runningMeanPeriod != 0):
     plt.plot(values['year'], runningMeanValue, color="red", linewidth=1.5, linestyle="-")
 plt.grid()
+plt.subplots_adjust(left=0.05, right=0.97, bottom=0.05, top=0.97)
 imagePath = const.IMG_PATH + const.TMP_IMG
 fig.savefig(imagePath)
 
