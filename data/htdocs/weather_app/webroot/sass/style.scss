@@ -6,9 +6,6 @@ body {
 .main {
   padding: 1rem 0;
   background-color: #fff;
-  .page-header {
-    margin-top: 0;
-  }
 }
 
 table.table {
@@ -33,6 +30,7 @@ h2 {
 
 .btn-submit {
   padding: 8px 50px;
+  margin: .5rem;
   border: 1px solid #ccc;
   background-image: linear-gradient(to bottom,#fafafa 0,#ededed 100%);
   border-radius: 5px;

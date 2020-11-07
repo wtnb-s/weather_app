@@ -2,6 +2,8 @@
 .gitignore.swp
 .vscode
 .bash_history
+*.csv
+*.png
+*.css.map
 data/htdocs/.*
-data/htdocs/weather_app/webroot/img/tmp/*
 data/htdocs/weather_app/src/Python/script/__pycache__

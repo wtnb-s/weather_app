@@ -24,12 +24,12 @@ if(runningMeanPeriod != 0):
 fig = plt.figure()
 plt.plot(values['year'], values['value'], color="black", linewidth=0.7, linestyle="-", label="")
 if(runningMeanPeriod != 0):
-    plt.plot(values['year'], runningMeanValue, color="blue", linewidth=1.5, linestyle="-")
+    plt.plot(values['year'], runningMeanValue, color="blue", linewidth=1.5, linestyle="-", label="移動平均")
 
 plt.xlabel("Year", fontsize=14, fontname='Times New Roman') # x軸のタイトル
 plt.ylabel("Temperature(℃)", fontsize=14, fontname='Times New Roman') # y軸のタイトル
 plt.grid()
-plt.subplots_adjust(left=0.08, right=0.97, bottom=0.14, top=0.95)
+plt.subplots_adjust(left=0.1, right=0.98, bottom=0.12, top=0.98)
 imagePath = const.IMG_PATH + const.TMP_IMG
 fig.savefig(imagePath)
 

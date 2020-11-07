@@ -1,4 +1,4 @@
-<h2>気温データ</h2>
+<h2>平均気温</h2>
 
 <?= $this->Form->create('displayTerm', ['type' => 'get']); ?>
 <table class="table">

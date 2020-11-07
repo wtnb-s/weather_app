@@ -7,10 +7,6 @@ body {
   background-color: #fff;
 }
 
-.main .page-header {
-  margin-top: 0;
-}
-
 table.table {
   margin-bottom: .5rem;
   border-color: #fff;
@@ -35,6 +31,7 @@ h2 {
 
 .btn-submit {
   padding: 8px 50px;
+  margin: .5rem;
   border: 1px solid #ccc;
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fafafa), to(#ededed));
   background-image: linear-gradient(to bottom, #fafafa 0, #ededed 100%);
