@@ -1,0 +1,39 @@
+@charset "utf-8";
+ 
+body {
+  padding-top: 1rem;
+}
+.main {
+  padding: 1rem 0;
+  background-color: #fff;
+  .page-header {
+    margin-top: 0;
+  }
+}
+
+table.table {
+  margin-bottom: .5rem;
+  border-color: #fff;
+  th {
+    text-align: right;
+    padding-right: .5rem;
+  }
+  td {
+    padding-left: .5rem;
+  }
+}
+
+h2 {
+  font-size: 1.5em;
+}
+
+.display-submit {
+ text-align: center; 
+}
+
+.btn-submit {
+  padding: 8px 50px;
+  border: 1px solid #ccc;
+  background-image: linear-gradient(to bottom,#fafafa 0,#ededed 100%);
+  border-radius: 5px;
+ }

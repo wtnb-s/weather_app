@@ -32,7 +32,7 @@ class TempertureController extends AppController {
         $city = $this->request->query('city');
         $month = $this->request->query('month');
         $runningMeanPeriod = !empty($this->request->query('runningMeanPeriod')) ? $this->request->query('runningMeanPeriod') : 0;
-        exec("python3.8 " . PYTHON_SCRIPT . "displayMonthData.py {$city} {$month} {$runningMeanPeriod}", $output);
+        exec("python3.8 " . PYTHON_SCRIPT . "displayMonthTemp.py {$city} {$month} {$runningMeanPeriod}", $output);
         $data=[];
         if(!empty($output)) {
             $data['image'] = $output[0];

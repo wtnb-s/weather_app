@@ -11,7 +11,7 @@ month = int(args[2])
 runningMeanPeriod = int(args[3])
 
 # 値取得
-data =  pd.read_csv(const.DATA_TEMP_PATH + file, header=0, encoding='cp932')
+data =  pd.read_csv(const.DATA_PATH_TEMP + file, header=0, encoding='cp932')
 values = data[data['mon'] == month]
 
 # 移動平均取得
@@ -22,11 +22,14 @@ if(runningMeanPeriod != 0):
 
 # 作図
 fig = plt.figure()
-plt.plot(values['year'], values['value'], color="blue", linewidth=1, linestyle="-")
+plt.plot(values['year'], values['value'], color="black", linewidth=0.7, linestyle="-", label="")
 if(runningMeanPeriod != 0):
-    plt.plot(values['year'], runningMeanValue, color="red", linewidth=1.5, linestyle="-")
+    plt.plot(values['year'], runningMeanValue, color="blue", linewidth=1.5, linestyle="-")
+
+plt.xlabel("Year", fontsize=14, fontname='Times New Roman') # x軸のタイトル
+plt.ylabel("Temperature(℃)", fontsize=14, fontname='Times New Roman') # y軸のタイトル
 plt.grid()
-plt.subplots_adjust(left=0.05, right=0.97, bottom=0.05, top=0.97)
+plt.subplots_adjust(left=0.08, right=0.97, bottom=0.14, top=0.95)
 imagePath = const.IMG_PATH + const.TMP_IMG
 fig.savefig(imagePath)
 
