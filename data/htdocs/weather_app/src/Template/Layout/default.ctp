@@ -37,7 +37,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 </head>
 <body>
 <?= $this->element("content") ?>
-<?= $this->Html->script('jquery-3.3.1.min.js') ?>
+<?= $this->Html->script('jquery-3.5.1.min.js') ?>
 <?= $this->Html->script('bootstrap.min.js') ?>
 </body>
 </html>
