@@ -3,6 +3,6 @@ use Cake\Core\Configure;
 
 return [
     Configure::write([
-        'cityKana' => ['kanazawa'=>'金沢', 'naha'=>'那覇', 'matsumoto'=>'松本', 'osaka'=>'大阪', 'tokyo'=>'東京', 'sapporo'=>'札幌']
+        'variableList' => ['LLP'=>'地上気圧', 'SLP'=>'海面更生気圧', 'Precip' =>'降水量', 'Temp'=>'平均気温', 'MaxTemp'=>'最高気温', 'MinTemp'=>'最低気温', 'Humidity' => '湿度','Wind' => '風速', 'Daylight' => '日照時間', 'Snowfall' => '降雪量']
     ])
 ];

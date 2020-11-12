@@ -16,7 +16,7 @@ num = int(args[5])
 data =  pd.read_csv(const.DATA_PATH_WEATHER + file, header=0, encoding='cp932')
 values = data[data['Month'] == month]
 # 欠測値を置換
-values = values.replace(-999.0, None)
+values = values.replace(-999.0, np.nan)
 
 # 移動平均取得
 if(runningMeanPeriod != 0):

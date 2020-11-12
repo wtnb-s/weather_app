@@ -22,6 +22,15 @@
   'label' => false
   ]); ?>
 </td>
+<th>表示要素</th>
+<td>
+<?= $this->Form->input('variable', 
+  ['type' => 'select',
+  'options' => $variableList,
+  'default' => $this->request->query('variable'),
+  'label' => false
+  ]); ?>
+</td>
 <th>移動平均期間</th>
 <td>
 <?= $this->Form->input('runningMeanPeriod',
