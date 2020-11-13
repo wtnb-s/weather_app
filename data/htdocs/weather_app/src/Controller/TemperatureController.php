@@ -11,17 +11,17 @@ class TemperatureController extends AppController {
     }
 
     public function index() {
-        // 都市かなリスト取得¥
+        // 都市名リスト取得
         $cityList = Hash::combine($this->City->getList(),'{n}.city_alpha', '{n}.city_name');
         // 月リスト取得
-        foreach(range(1,12) as $i){
+        foreach (range(1,12) as $i){
             $monthList[$i] = $i . "月";
         }
-        // 表示要素
+        // 表示要素リスト取得
         $variableList = Configure::read('variableList');
 
-        // 移動平均期間
-        foreach(range(1,20) as $i){
+        // 移動平均期間リスト取得
+        foreach (range(1,20) as $i){
             $period[$i] = $i . "期間";
         }
         $this->set(compact('cityList', 'monthList', 'variableList', 'period'));
@@ -31,11 +31,11 @@ class TemperatureController extends AppController {
         $month = $this->request->query('month');
         $variable = $this->request->query('variable');
         $runningMeanPeriod = !empty($this->request->query('runningMeanPeriod')) ? $this->request->query('runningMeanPeriod') : 0;
-        $ordinal = 1;
-        exec("python3.8 " . PYTHON_SCRIPT . "displayMonthWeather.py {$city} {$month} {$variable} {$runningMeanPeriod} {$ordinal}", $output);
+    
+        exec("python3.8 " . PYTHON_SCRIPT . "displayMonthWeather.py {$city} {$month} {$variable} {$runningMeanPeriod}", $output);
 
         $data=[];
-        if(!empty($output)) {
+        if (!empty($output)) {
             $data['image'] = $output[0];
             $data['city'] = $cityList[$city];
         }
