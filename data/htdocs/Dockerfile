@@ -18,6 +18,8 @@ RUN pip3.8 install --upgrade pip
 RUN pip3.8 install matplotlib
 RUN pip3.8 install numpy
 RUN pip3.8 install pandas
+RUN pip3.8 install geopandas
+RUN pip3.8 install descartes
 
 WORKDIR /root
 RUN docker-php-ext-install intl pdo pdo_mysql

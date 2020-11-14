@@ -26,7 +26,7 @@ if __name__ == "__main__":
         values['DailyRange'] = getDailyRange(values)
     
     # 作図
-    fig = plt.figure(dpi=100, figsize=(7,3))
+    plt.figure(dpi=100, figsize=(7,3))
     plt.plot(values['Year'], values[variable], color="black", linewidth=0.7, linestyle="-", label="")
     
     # 移動平均期間が指定されている場合、移動平均計算
@@ -44,7 +44,7 @@ if __name__ == "__main__":
     # 画像出力
     outputImage = const.TMP_IMG
     imagePath = const.IMG_PATH + outputImage
-    fig.savefig(imagePath)
+    plt.savefig(imagePath)
     
     # コントローラーへの返り値
     print(outputImage)
