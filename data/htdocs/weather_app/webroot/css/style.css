@@ -29,6 +29,10 @@ h2 {
   text-align: center;
 }
 
+.display-figure {
+  text-align: center;
+}
+
 .btn-submit {
   padding: 8px 50px;
   margin: .5rem;

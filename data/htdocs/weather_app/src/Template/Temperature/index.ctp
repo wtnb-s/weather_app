@@ -1,4 +1,4 @@
-<h2>気象データ</h2>
+<h2>地点別気象データ</h2>
 
 <?= $this->Form->create('displayTerm', ['type' => 'get']); ?>
 <table class="table">
@@ -51,4 +51,6 @@
 </div>
 <?= $this->Form->end(); ?>
 
+<div class="display-figure">
 <?= $this->HTML->image($data['image']); ?>
+</div>

@@ -1,8 +1,8 @@
 from scipy import interpolate
-import os, sys, const
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import sys, const
 
 def getDailyRange(values):
     return values['MaxTemp'] - values['MinTemp']
@@ -39,12 +39,12 @@ if __name__ == "__main__":
     # ラベル、グリッド、トリミング
     plt.xlabel("Year", fontsize=14, fontname='Times New Roman')
     plt.grid()
-    plt.subplots_adjust(left=0.1, right=0.98, bottom=0.15, top=0.98)
+    plt.subplots_adjust(left=0.1, right=1.0, bottom=0.15, top=1.0)
     
     # 画像出力
     outputImage = const.TMP_IMG
     imagePath = const.IMG_PATH + outputImage
-    plt.savefig(imagePath)
+    plt.savefig(imagePath, format="png", dpi=100, bbox_inches='tight', pad_inches=0)
     
     # コントローラーへの返り値
     print(outputImage)
