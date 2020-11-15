@@ -4,7 +4,7 @@ use App\Controller\AppController;
 use Cake\Core\Configure;
 use Cake\Utility\Hash;
 
-class TemperatureController extends AppController {
+class LocationController extends AppController {
     public function initialize() {
         parent::initialize();
         $this->loadModel('City');
