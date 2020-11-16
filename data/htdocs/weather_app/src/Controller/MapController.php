@@ -22,16 +22,18 @@ class MapController extends AppController {
         // 表示要素リスト取得
         $variableList = Configure::read('variableList');
 
-        $this->set(compact('yearList', 'monthList', 'variableList'));
+        // 都市名リスト取得
+        $cityList = $this->City->getList();
+
+        $this->set(compact('yearList', 'monthList', 'variableList', 'cityList'));
 
         // 引数設定
-        $year = $this->request->query('year');
-        $month = $this->request->query('month');
-        $variable = $this->request->query('variable');
+        $data['year'] = $this->request->query('year');
+        $data['month'] = $this->request->query('month');
+        $data['variable'] = $this->request->query('variable');
     
-        exec("python3.8 " . PYTHON_SCRIPT . "displayPlotMap.py {$year} {$month} {$variable}", $output);
+        exec("python3.8 " . PYTHON_SCRIPT . "displayPlotMap.py {$data['year']} {$data['month']} {$data['variable']}", $output);
 
-        $data=[];
         if (!empty($output)) {
             $data['image'] = $output[0];
         }

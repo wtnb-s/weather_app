@@ -2,7 +2,13 @@ import numpy as np
 import pandas as pd
 import geopandas as gpd
 import matplotlib.pyplot as plt
+from sklearn import linear_model
 import sys, const
+
+def getTrend(year, value):
+    clf = linear_model.LinearRegression()
+    clf.fit(year, value)
+    print(clf.coef_)
 
 def getDailyRange(values):
     return values['MaxTemp'] - values['MinTemp']
@@ -31,7 +37,9 @@ if __name__ == "__main__":
             value.append(values[variable])
 
     # カラーマップ作成
-    cm = plt.cm.get_cmap('rainbow')    
+    cm = plt.cm.get_cmap('rainbow')  
+    if (variable == 'Precip'):
+        cm = plt.cm.get_cmap('gist_rainbow')
     # figure作成
     plt.figure()
 
@@ -44,7 +52,7 @@ if __name__ == "__main__":
         plt.ylim([25.5,46])
 
     # プロット
-    mappable = plt.scatter(cityList['lon'], cityList['lat'], c=value, marker='o', s=10, cmap=cm, alpha=0.9, linewidths = 0.4, edgecolors='black' 	)
+    mappable = plt.scatter(cityList['lon'], cityList['lat'], c=value, marker='o', s=12, cmap=cm, alpha=0.9, linewidths = 0.5, edgecolors='black' 	)
     # カラーバーを付加
     plt.colorbar(mappable)
 

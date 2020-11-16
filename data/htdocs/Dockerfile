@@ -20,6 +20,7 @@ RUN pip3.8 install numpy
 RUN pip3.8 install pandas
 RUN pip3.8 install geopandas
 RUN pip3.8 install descartes
+RUN pip3.8 install sklearn
 
 WORKDIR /root
 RUN docker-php-ext-install intl pdo pdo_mysql

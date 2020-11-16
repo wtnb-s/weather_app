@@ -42,4 +42,9 @@
 
 <div class="display-figure">
 <p><?= $this->HTML->image($data['image'], ['alt' => 'map', 'usemap' => '#distributionMap']); ?></p>
-<?= $this->element('mapArea'); ?>
+<map name="distributionMap">
+<?php foreach ($cityList as $city): ?>
+    <area target="_blank" alt="<?= $city['city_alpha']?>" title="<?= $city['city_name']?>" href="http://localhost:18765/Location/index?city=<?= $city['city_alpha']?>&month=<?= $data['month']?>&variable=<?= $data['variable']?>&runningMeanPeriod=5" coords="<?= $city['x_label']?>, <?= $city['y_label']?>, 8" shape="circle">
+<?php endforeach; ?>
+</map>
+</div>
