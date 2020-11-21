@@ -28,11 +28,13 @@ class MapController extends AppController {
         $this->set(compact('yearList', 'monthList', 'variableList', 'cityList'));
 
         // 引数設定
-        $data['year'] = $this->request->query('year');
+        $data['fromYear'] = $this->request->query('fromYear');
+        $data['toYear'] = $this->request->query('toYear');
         $data['month'] = $this->request->query('month');
         $data['variable'] = $this->request->query('variable');
+        $data['analysisType'] = $this->request->query('analysisType');
     
-        exec("python3.8 " . PYTHON_SCRIPT . "displayPlotMap.py {$data['year']} {$data['month']} {$data['variable']}", $output);
+        exec("python3.8 " . PYTHON_SCRIPT . "displayPlotMap.py {$data['fromYear']} {$data['toYear']} {$data['month']} {$data['variable']} {$data['analysisType']}", $output);
 
         if (!empty($output)) {
             $data['image'] = $output[0];

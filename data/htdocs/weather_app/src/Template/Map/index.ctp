@@ -4,16 +4,23 @@
 <table class="table">
 <tbody>
 <tr>
-<th>年</th>
 <td>
-<?= $this->Form->input('year',
+<?= $this->Form->input('fromYear',
   ['type' => 'select',
   'options' => $yearList,
-  'default' => $this->request->query('year'),
+  'default' => $this->request->query('fromYear'),
   'label' => false
  ]); ?>
 </td>
-<th>月</th>
+<th>〜</th>
+<td>
+<?= $this->Form->input('toYear',
+  ['type' => 'select',
+  'options' => $yearList,
+  'default' => $this->request->query('toYear'),
+  'label' => false
+ ]); ?>
+</td>
 <td>
 <?= $this->Form->input('month', 
   ['type' => 'select',
@@ -30,6 +37,12 @@
   'default' => $this->request->query('variable'),
   'label' => false
   ]); ?>
+</td>
+<th>計算タイプ</th>
+<td>
+<?php $options = ['mean' => '平均', 'regression' => '回帰']; ?>
+<?php $attributes = ['default' => $this->request->query('analysisType'), 'separator' => '<br/>']; ?>
+<?= $this->Form->radio('analysisType', $options, $attributes); ?>
 </td>
 </tr>
 </tbody>
