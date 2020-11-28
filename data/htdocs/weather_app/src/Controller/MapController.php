@@ -12,7 +12,7 @@ class MapController extends AppController {
 
     public function index() {
         // 年リスト取得
-        foreach (range(1901,2020) as $i){
+        foreach (range(1900,2020) as $i){
             $yearList[$i] = $i . "年";
         }
         // 月リスト取得
