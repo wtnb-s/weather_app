@@ -52,5 +52,5 @@
 <?= $this->Form->end(); ?>
 
 <div class="display-figure">
-<?= $this->HTML->image($data['image']); ?>
+<?= $this->Html->image($data['image']); ?>
 </div>

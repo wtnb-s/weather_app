@@ -43,6 +43,13 @@
 <?php $options = ['mean' => '平均', 'regression' => '回帰']; ?>
 <?php $attributes = ['default' => $this->request->query('analysisType'), 'separator' => '<br/>']; ?>
 <?= $this->Form->radio('analysisType', $options, $attributes); ?>
+
+<?= $this->Form->input('analysisType', 
+  ['type' => 'radio',
+  'options' => $variableList,
+  'default' => $this->request->query('variable'),
+  'label' => true
+  ]); ?>
 </td>
 </tr>
 </tbody>
@@ -54,7 +61,7 @@
 <?= $this->Form->end(); ?>
 
 <div class="display-figure">
-<p><?= $this->HTML->image($data['image'], ['alt' => 'map', 'usemap' => '#distributionMap']); ?></p>
+<p><?= $this->Html->image($data['image'], ['alt' => 'map', 'usemap' => '#distributionMap']); ?></p>
 <map name="distributionMap">
 <?php foreach ($cityList as $city): ?>
     <area target="_blank" alt="<?= $city['city_alpha']?>" title="<?= $city['city_name']?>" href="http://localhost:18765/Location/index?city=<?= $city['city_alpha']?>&month=<?= $data['month']?>&variable=<?= $data['variable']?>&runningMeanPeriod=5" coords="<?= $city['x_label']?>, <?= $city['y_label']?>, 8" shape="circle">
