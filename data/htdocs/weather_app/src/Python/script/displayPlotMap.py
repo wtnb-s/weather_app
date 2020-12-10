@@ -55,7 +55,7 @@ if __name__ == "__main__":
         # 初期値に欠損値を入力
         analysisData = -999
         # 計算期間の10%以上が欠測値の場合、計算を行わず欠測値とする
-        if ((value == -999.0).sum() <= round(len(value)*0.1)):
+        if ((value == -999.0).sum() <= round(len(value)*0.1) and (value.tolist())[0] != -999.0):
             # 欠測値をnanに置換
             value = value.replace(-999.0, np.nan)
             if (analysisType == 'mean'):
