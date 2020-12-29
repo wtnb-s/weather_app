@@ -1,9 +1,9 @@
+from sklearn.linear_model import LinearRegression
+from codes import const
 import numpy as np
 import pandas as pd
 import geopandas as gpd
 import matplotlib.pyplot as plt
-from sklearn.linear_model import LinearRegression
-import sys, const
 
 # 日較差算出
 def getDailyRange(data):
@@ -28,15 +28,8 @@ def getRegression(value, year):
 def getMean(value):
     return value.mean()
 
-if __name__ == "__main__":
-    # コマンドライン引数取得
-    args= sys.argv
-    fromYear = int(args[1])
-    toYear = int(args[2])
-    month = int(args[3])
-    variable = args[4]
-    analysisType = args[5]
-
+# 平均値算出
+def main(fromYear: int, toYear: int, month: int, variable: str, analysisType: str):
     # 計算結果リスト初期化
     valueList = []
     # 都市ファイル読み込み
@@ -100,6 +93,4 @@ if __name__ == "__main__":
     outputImage = const.TMP_IMG
     imagePath = const.IMG_PATH + outputImage
     plt.savefig(imagePath, format="png", dpi=150, bbox_inches='tight', pad_inches=0)
-
-    # コントローラーへの返り値
-    print(outputImage)
+    return True

@@ -2,8 +2,12 @@
 .gitignore.swp
 .vscode
 .bash_history
-*.csv
 *.png
 *.css.map
+*.ibd
+*.MYD
 data/htdocs/.*
+data/mysql/db/*
+data/mysql/db/mysql/*
+
 data/htdocs/weather_app/src/Python/script/__pycache__

@@ -1,21 +1,15 @@
 from scipy import interpolate
+from codes import const
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import sys, const
 
 def getDailyRange(values):
     return values['MaxTemp'] - values['MinTemp']
 
-if __name__ == "__main__":
-    # コマンドライン引数取得
-    args= sys.argv
-    file = args[1] + ".csv"
-    month = int(args[2])
-    variable = args[3]
-    runningMeanPeriod = int(args[4])
-    
+def main(city: str, month: int, variable: str, runningMeanPeriod :int = 0):    
     # 値取得
+    file =  city + ".csv"
     data =  pd.read_csv(const.DATA_PATH_WEATHER + file, header=0, encoding='cp932')
     values = data[data['Month'] == month]
     # 欠測値を置換
@@ -37,7 +31,7 @@ if __name__ == "__main__":
         plt.plot(values['Year'], runningMeanValue, color="blue", linewidth=1.5, linestyle="-", label="移動平均")
     
     # ラベル、グリッド、トリミング
-    plt.xlabel("Year", fontsize=14, fontname='Times New Roman')
+    plt.xlabel("Year", fontsize=14)
     plt.grid()
     plt.subplots_adjust(left=0.1, right=1.0, bottom=0.15, top=1.0)
     
@@ -45,6 +39,4 @@ if __name__ == "__main__":
     outputImage = const.TMP_IMG
     imagePath = const.IMG_PATH + outputImage
     plt.savefig(imagePath, format="png", dpi=100, bbox_inches='tight', pad_inches=0)
-    
-    # コントローラーへの返り値
-    print(outputImage)
+    return True

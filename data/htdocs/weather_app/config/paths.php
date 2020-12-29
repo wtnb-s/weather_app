@@ -20,3 +20,5 @@ define('PYTHON', APP . 'Python' . DS);
 define('PYTHON_DATA', PYTHON . 'data' . DS);
 define('PYTHON_DATA_TEMP', PYTHON_DATA . 'temp' . DS);
 define('PYTHON_SCRIPT', PYTHON . 'script' . DS);
+define('IMG_PATH', WWW_ROOT . 'img' . DS);
+define('TMP_IMG', 'tmp' . DS . 'tmp.png');
