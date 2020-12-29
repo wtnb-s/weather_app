@@ -1,4 +1,4 @@
-version: '2'
+version: '2.0'
 services:
   mysql:
     restart: always
@@ -15,7 +15,7 @@ services:
       - "13307:3306"
   nginx:
     restart: always
-    image: "nginx:mainline-alpine"
+    build: ./data/mysql/
     ports:
       - "80:80"
       - "443:443"
@@ -48,21 +48,22 @@ services:
       - mysql
       - phpfpm
   phpmyadmin:
-    # Image Name
-    image: phpmyadmin/phpmyadmin
-    # Container Name
-    container_name: weather_app_phpmyadmin
-    # Environment
+    build: ./data/phpmyadmin
     environment:
       PMA_ARBITRARY: 1
       PMA_HOSTS: weather_app_mysql_1
       PMA_USER: root
       PMA_PASSWORD: password
-    # Port forwarding(host:container)
     ports:
       - 18080:80
-    # Container dependencies
     depends_on:
       - mysql
       - phpfpm
       - nginx
+  flask:
+    build: ./data/flask/
+    volumes:
+      - ./data/flask:/api
+    ports:
+      - "5000:5000"
+    command: flask run --host 0.0.0.0 --port 5000
