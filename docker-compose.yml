@@ -13,28 +13,6 @@ services:
       TZ: "Asia/Tokyo"
     ports:
       - "13307:3306"
-  nginx:
-    restart: always
-    build: ./data/mysql/
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - "./data/nginx/conf:/etc/nginx/"
-      - "./data/htdocs:/var/www/html"
-    environment:
-      TZ: "Asia/Tokyo"
-    depends_on:
-      - phpfpm
-  phpfpm:
-    build: ./data/phpfpm/
-    environment:
-      TZ: "Asia/Tokyo"
-    volumes:
-      - "./data/htdocs:/var/www/html"
-      - ./data/phpfpm/php.ini:/usr/local/etc/php/php.ini
-    depends_on:
-      - mysql
   host:
     build: ./data/htdocs
     environment:
@@ -46,7 +24,6 @@ services:
       - "18765:80"
     depends_on:
       - mysql
-      - phpfpm
   phpmyadmin:
     build: ./data/phpmyadmin
     environment:
@@ -58,8 +35,6 @@ services:
       - 18080:80
     depends_on:
       - mysql
-      - phpfpm
-      - nginx
   flask:
     build: ./data/flask/
     volumes:
