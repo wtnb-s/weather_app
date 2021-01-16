@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    run: host
+  name: host
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: host
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: host
+    spec:
+      containers:
+        - env:
+            - name: PRJ
+              value: weather_app
+            - name: TZ
+              value: Asia/Tokyo
+            - name: MYSQL_HOST
+              value: mysql:13307
+            - name: MYSQL_USER
+              value: my_app
+            - name: MYSQL_PASSWORD
+              value: secret
+            - name: MYSQL_DATABASE
+              value: my_app
+          image: fyomaruhauto1212/weather_app_host
+          name: host
+          ports:
+            - containerPort: 80
+          resources: {}
+      restartPolicy: Always
+status: {}

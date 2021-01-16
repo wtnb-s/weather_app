@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    run: phpmyadmin
+  name: phpmyadmin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: phpmyadmin
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: phpmyadmin
+    spec:
+      containers:
+        - env:
+            - name: PMA_ARBITRARY
+              value: "1"
+            - name: PMA_HOSTS
+              value: mysql:13307
+            - name: PMA_PASSWORD
+              value: password
+            - name: PMA_USER
+              value: root
+          image: phpmyadmin
+          name: phpmyadmin
+          ports:
+            - containerPort: 80
+          resources: {}
+      restartPolicy: Always
+status: {}

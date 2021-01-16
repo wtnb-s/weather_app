@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    run: flask
+  name: flask
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: flask
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: flask
+    spec:
+      containers:
+        - args:
+            - flask
+            - run
+            - --host
+            - 0.0.0.0
+            - --port
+            - "5000"
+          image: fyomaruhauto1212/weather_app_flask:latest
+          name: flask
+          ports:
+            - containerPort: 5000
+          resources: {}
+      restartPolicy: Always
+status: {}
