@@ -19,16 +19,27 @@ spec:
     spec:
       containers:
         - env:
-            - name: MYSQL_DATABASE
-              value: my_app
-            - name: MYSQL_PASSWORD
-              value: secret
-            - name: MYSQL_ROOT_PASSWORD
-              value: password
-            - name: MYSQL_USER
-              value: my_app
-            - name: TZ
-              value: Asia/Tokyo
+          - name: MYSQL_DATABASE
+            valueFrom:
+              configMapKeyRef:
+                name: my-config
+                key: mysql_database
+          - name: MYSQL_PASSWORD
+            valueFrom:
+              configMapKeyRef:
+                name: my-config
+                key: mysql_password
+          - name: MYSQL_ROOT_PASSWORD
+            valueFrom:
+              configMapKeyRef:
+                name: my-config
+                key: mysql_root_password
+          - name: MYSQL_USER
+            valueFrom:
+              configMapKeyRef:
+                name: my-config
+                key: mysql_user
+          #image: 127.0.0.1:5000/fyomaruhauto1212/weather_app_mysql
           image: fyomaruhauto1212/weather_app_mysql
           name: mysql
           ports:

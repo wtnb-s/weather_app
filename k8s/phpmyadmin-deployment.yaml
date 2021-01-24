@@ -20,14 +20,26 @@ spec:
       containers:
         - env:
             - name: PMA_ARBITRARY
-              value: "1"
+              valueFrom:
+                configMapKeyRef:
+                  name: my-config
+                  key: pma_arbitrary
             - name: PMA_HOSTS
-              value: mysql:13307
+              valueFrom:
+                configMapKeyRef:
+                  name: my-config
+                  key: pma_hosts
             - name: PMA_PASSWORD
-              value: password
+              valueFrom:
+                configMapKeyRef:
+                  name: my-config
+                  key: pma_password
             - name: PMA_USER
-              value: root
-          image: phpmyadmin
+              valueFrom:
+                configMapKeyRef:
+                  name: my-config
+                  key: pma_user
+          image: fyomaruhauto1212/weather_app_phpmyadmin
           name: phpmyadmin
           ports:
             - containerPort: 80

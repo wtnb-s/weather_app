@@ -20,17 +20,35 @@ spec:
       containers:
         - env:
             - name: PRJ
-              value: weather_app
+              valueFrom:
+                configMapKeyRef:
+                  name: my-config
+                  key: prj
             - name: TZ
-              value: Asia/Tokyo
+              valueFrom:
+                configMapKeyRef:
+                  name: my-config
+                  key: tz
             - name: MYSQL_HOST
-              value: mysql:13307
-            - name: MYSQL_USER
-              value: my_app
-            - name: MYSQL_PASSWORD
-              value: secret
+              valueFrom:
+                configMapKeyRef:
+                  name: my-config
+                  key: mysql_host
             - name: MYSQL_DATABASE
-              value: my_app
+              valueFrom:
+                configMapKeyRef:
+                  name: my-config
+                  key: mysql_database
+            - name: MYSQL_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: my-config
+                  key: mysql_user
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: my-config
+                  key: mysql_password
           image: fyomaruhauto1212/weather_app_host
           name: host
           ports:
