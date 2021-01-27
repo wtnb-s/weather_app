@@ -45,5 +45,16 @@ spec:
           ports:
             - containerPort: 3306
           resources: {}
+          volumeMounts:
+            # Volume名を指定
+          - name: my-pv
+            # Volumeをマウントするコンテナ内のファイルパスを指定
+            mountPath: /var/lib/mysql
+      volumes:
+        # 作成するVolume名を指定
+        - name: my-pv
+          # 永続ボリューム要求名を指定
+          persistentVolumeClaim:
+            claimName: pvc
       restartPolicy: Always
 status: {}
