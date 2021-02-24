@@ -42,14 +42,14 @@ class MapController extends AppController {
         $this->set(compact('data'));
     }
 
-        /*
+    /*
     * URLから画像を取得し保存する
     * param string $url 画像URL
     */
     private function __getImageFromUrl(string $url) {
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_TIMEOUT, 3);
-        curl_setopt( $ch, CURLOPT_HEADER, false );
+        curl_setopt($ch, CURLOPT_HEADER, false );
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $raw = curl_exec($ch); 
         curl_close($ch);
